@@ -22,3 +22,12 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+### 下载使用的插件
+
+npm install --save normalize.css   初始化的样式
+
+npm i element-ui -S   UI组件库
+
+

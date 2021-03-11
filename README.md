@@ -31,3 +31,5 @@ npm install --save normalize.css   初始化的样式
 npm i element-ui -S   UI组件库
 
 npm i -D svg-sprite-loader  svg图标 
+
+npm install js-cookie --save 使用js-cookie

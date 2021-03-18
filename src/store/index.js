@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import getters from './getters'
-Vue.use(Vuex)
 
+Vue.use(Vuex)
 /** *
  *   动态导入文件
 //  require.context 接收三个参数

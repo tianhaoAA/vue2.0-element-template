@@ -33,3 +33,10 @@ npm i element-ui -S   UI组件库
 npm i -D svg-sprite-loader  svg图标 
 
 npm install js-cookie --save 使用js-cookie
+
+npm install screenfull --save 使用全屏模式
+
+npm install --save fuse.js   模糊搜索
+
+npm install --save nprogress  进度条
+npm install mockjs --save-dev  模拟数据

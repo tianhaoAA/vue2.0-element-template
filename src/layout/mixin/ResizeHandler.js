@@ -32,7 +32,6 @@ export default {
       return rect.width - 1 < WIDTH
     },
     $_resizeHandler() {
-      console.log('页面发生了变化')
       if (!document.hidden) {
         const isMobile = this.$_isMobile()
         store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop')

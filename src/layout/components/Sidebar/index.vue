@@ -49,6 +49,9 @@ export default {
     isCollapse() {
       return !this.sidebar.opened
     }
+  },
+  mounted() {
+    console.log('当前的路由', this.permission_routes)
   }
 }
 </script>

@@ -1,4 +1,5 @@
 <template>
+  <!-- 控制左侧菜单的图标 -->
   <div style="padding: 0 15px;" @click="toggleClick">
     <svg
       :class="{'is-active':isActive}"

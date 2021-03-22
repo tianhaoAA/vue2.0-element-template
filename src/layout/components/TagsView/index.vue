@@ -17,10 +17,10 @@
       </router-link>
     </scroll-pane>
     <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
-      <li @click="refreshSelectedTag(selectedTag)">Refresh</li>
-      <li v-if="!isAffix(selectedTag)" @click="closeSelectedTag(selectedTag)">Close</li>
-      <li @click="closeOthersTags">Close Others</li>
-      <li @click="closeAllTags(selectedTag)">Close All</li>
+      <li @click="refreshSelectedTag(selectedTag)">刷新</li>
+      <li v-if="!isAffix(selectedTag)" @click="closeSelectedTag(selectedTag)">关闭</li>
+      <li @click="closeOthersTags">关闭其他</li>
+      <li @click="closeAllTags(selectedTag)">关闭所有</li>
     </ul>
   </div>
 </template>
@@ -42,6 +42,7 @@ export default {
   },
   computed: {
     visitedViews() {
+      // console.log('已经打开的路由', this.$store.state.tagsView.visitedViews)
       return this.$store.state.tagsView.visitedViews
     },
     routes() {
@@ -72,6 +73,7 @@ export default {
     isAffix(tag) {
       return tag.meta && tag.meta.affix
     },
+    // 过滤路由是否有显示到tabs栏上面
     filterAffixTags(routes, basePath = '/') {
       let tags = []
       routes.forEach(route => {
@@ -93,6 +95,7 @@ export default {
       })
       return tags
     },
+    // 初始化tabs栏
     initTags() {
       const affixTags = this.affixTags = this.filterAffixTags(this.routes)
       for (const tag of affixTags) {
@@ -102,6 +105,7 @@ export default {
         }
       }
     },
+    // 添加tab栏
     addTags() {
       const { name } = this.$route
       if (name) {
@@ -124,6 +128,7 @@ export default {
         }
       })
     },
+    // 刷新
     refreshSelectedTag(view) {
       this.$store.dispatch('tagsView/delCachedView', view).then(() => {
         const { fullPath } = view
@@ -134,6 +139,7 @@ export default {
         })
       })
     },
+    // 关闭选中的tabs栏
     closeSelectedTag(view) {
       this.$store.dispatch('tagsView/delView', view).then(({ visitedViews }) => {
         if (this.isActive(view)) {
@@ -141,12 +147,14 @@ export default {
         }
       })
     },
+    // 关闭其他的tabs栏
     closeOthersTags() {
       this.$router.push(this.selectedTag)
       this.$store.dispatch('tagsView/delOthersViews', this.selectedTag).then(() => {
         this.moveToCurrentTag()
       })
     },
+    // 关闭所有tab栏
     closeAllTags(view) {
       this.$store.dispatch('tagsView/delAllViews').then(({ visitedViews }) => {
         if (this.affixTags.some(tag => tag.path === view.path)) {
@@ -170,6 +178,7 @@ export default {
         }
       }
     },
+    // 打开右键菜单事件
     openMenu(tag, e) {
       const menuMinWidth = 105
       const offsetLeft = this.$el.getBoundingClientRect().left // container margin left

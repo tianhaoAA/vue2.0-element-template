@@ -1,9 +1,10 @@
 const state = {
-  visitedViews: [],
+  visitedViews: [], // tabs栏的数组
   cachedViews: []
 }
 
 const mutations = {
+  // 处理添加到tabs 栏上面
   ADD_VISITED_VIEW: (state, view) => {
     if (state.visitedViews.some(v => v.path === view.path)) return
     state.visitedViews.push(
@@ -18,7 +19,7 @@ const mutations = {
       state.cachedViews.push(view.name)
     }
   },
-
+  // 删除单个tabs栏
   DEL_VISITED_VIEW: (state, view) => {
     for (const [i, v] of state.visitedViews.entries()) {
       if (v.path === view.path) {
@@ -67,20 +68,25 @@ const mutations = {
 }
 
 const actions = {
+  // 添加tab栏
   addView({ dispatch }, view) {
     dispatch('addVisitedView', view)
     dispatch('addCachedView', view)
   },
+  // 添加到tab栏
   addVisitedView({ commit }, view) {
     commit('ADD_VISITED_VIEW', view)
   },
+  //  添加到缓存上
   addCachedView({ commit }, view) {
     commit('ADD_CACHED_VIEW', view)
   },
-
+  // 删除单个tab栏并移除缓存
   delView({ dispatch, state }, view) {
     return new Promise(resolve => {
+      // 删除tab栏
       dispatch('delVisitedView', view)
+      // 移除缓存
       dispatch('delCachedView', view)
       resolve({
         visitedViews: [...state.visitedViews],
@@ -88,19 +94,21 @@ const actions = {
       })
     })
   },
+  // 删除单个tab栏
   delVisitedView({ commit, state }, view) {
     return new Promise(resolve => {
       commit('DEL_VISITED_VIEW', view)
       resolve([...state.visitedViews])
     })
   },
+  // 删除单个缓存
   delCachedView({ commit, state }, view) {
     return new Promise(resolve => {
       commit('DEL_CACHED_VIEW', view)
       resolve([...state.cachedViews])
     })
   },
-
+  // 关闭其他标签
   delOthersViews({ dispatch, state }, view) {
     return new Promise(resolve => {
       dispatch('delOthersVisitedViews', view)
@@ -111,19 +119,21 @@ const actions = {
       })
     })
   },
+  // 关闭其他标签
   delOthersVisitedViews({ commit, state }, view) {
     return new Promise(resolve => {
       commit('DEL_OTHERS_VISITED_VIEWS', view)
       resolve([...state.visitedViews])
     })
   },
+  // 关闭其他标签缓存
   delOthersCachedViews({ commit, state }, view) {
     return new Promise(resolve => {
       commit('DEL_OTHERS_CACHED_VIEWS', view)
       resolve([...state.cachedViews])
     })
   },
-
+  // 关闭所有标签
   delAllViews({ dispatch, state }, view) {
     return new Promise(resolve => {
       dispatch('delAllVisitedViews', view)
@@ -134,12 +144,14 @@ const actions = {
       })
     })
   },
+  // 关闭所有标签
   delAllVisitedViews({ commit, state }) {
     return new Promise(resolve => {
       commit('DEL_ALL_VISITED_VIEWS')
       resolve([...state.visitedViews])
     })
   },
+  // 关闭所有标签缓存
   delAllCachedViews({ commit, state }) {
     return new Promise(resolve => {
       commit('DEL_ALL_CACHED_VIEWS')

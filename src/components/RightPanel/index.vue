@@ -1,4 +1,5 @@
 <template>
+  <!-- 右侧设置 -->
   <div ref="rightPanel" :class="{show:show}" class="rightPanel-container">
     <div class="rightPanel-background" />
     <div class="rightPanel">

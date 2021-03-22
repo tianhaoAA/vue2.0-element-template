@@ -5,6 +5,11 @@ import VueRouter from 'vue-router'
 import Layout from '@/layout'
 Vue.use(VueRouter)
 
+/** *
+ *  affix:  if set true, the tag will affix in the tags-view 如果为true则显示在tabs上面
+ *
+ * **/
+
 export const constantRoutes = [
   {
     path: '/redirect',

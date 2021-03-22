@@ -1,4 +1,5 @@
 <template>
+  <!-- 头部全局搜索菜单 -->
   <div :class="{'show':show}" class="header-search">
     <svg-icon class-name="search-icon" icon-class="search" @click.stop="click" />
     <el-select
@@ -12,7 +13,7 @@
       class="header-search-select"
       @change="change"
     >
-      <el-option v-for="item in options" :key="item.path" :value="item" :label="item.title.join(' > ')" />
+      <el-option v-for="option in options" :key="option.item.path" :value="option.item" :label="option.item.title.join(' > ')" />
     </el-select>
   </div>
 </template>
@@ -36,6 +37,7 @@ export default {
   },
   computed: {
     routes() {
+      console.log('左侧菜单全部路由', this.$store.getters.permission_routes)
       return this.$store.getters.permission_routes
     }
   },
@@ -70,6 +72,7 @@ export default {
       this.show = false
     },
     change(val) {
+      console.log(val, '75行val')
       this.$router.push(val.path)
       this.search = ''
       this.options = []
@@ -77,7 +80,9 @@ export default {
         this.show = false
       })
     },
+    // 创建新的fuse
     initFuse(list) {
+      console.log(list, 'list')
       this.fuse = new Fuse(list, {
         shouldSort: true,
         threshold: 0.4,
@@ -126,12 +131,15 @@ export default {
           }
         }
       }
+      console.log('筛选出来的数据', res)
       return res
     },
     querySearch(query) {
       console.log('搜索的值', query)
       if (query !== '') {
+        console.log(this.fuse, 'this.fuse')
         this.options = this.fuse.search(query)
+        console.log('搜索出来的数据', this.options)
       } else {
         this.options = []
       }

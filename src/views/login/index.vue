@@ -106,11 +106,11 @@ export default {
       passwordType: 'password',
       capsTooltip: false,
       loading: false,
-      showDialog: false,
+      showDialog: false
     }
   },
   watch: {
-  
+
   },
   created() {
     // window.addEventListener('storage', this.afterQRScan)
@@ -140,18 +140,21 @@ export default {
         this.$refs.password.focus()
       })
     },
-   async handleLogin() {
+    async handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-           this.$store.dispatch('permission/generateRoutes')
-          this.loading = true
-           this.$router.push('/')
+          this.$store.dispatch('permission/generateRoutes').then(() => {
+            this.$router.push({ path: '/' })
+            this.loading = true
+          }).catch((e) => {
+            console.log(e)
+          })
         } else {
           console.log('error submit!!')
           return false
         }
       })
-    },
+    }
   }
 }
 </script>

@@ -107,21 +107,10 @@ export default {
       capsTooltip: false,
       loading: false,
       showDialog: false,
-      redirect: undefined,
-      otherQuery: {}
     }
   },
   watch: {
-    $route: {
-      handler: function(route) {
-        const query = route.query
-        if (query) {
-          this.redirect = query.redirect
-          this.otherQuery = this.getOtherQuery(query)
-        }
-      },
-      immediate: true
-    }
+  
   },
   created() {
     // window.addEventListener('storage', this.afterQRScan)
@@ -151,32 +140,18 @@ export default {
         this.$refs.password.focus()
       })
     },
-    handleLogin() {
+   async handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
+           this.$store.dispatch('permission/generateRoutes')
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm)
-            .then(() => {
-              this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
-              this.loading = false
-            })
-            .catch(() => {
-              this.loading = false
-            })
+           this.$router.push('/')
         } else {
           console.log('error submit!!')
           return false
         }
       })
     },
-    getOtherQuery(query) {
-      return Object.keys(query).reduce((acc, cur) => {
-        if (cur !== 'redirect') {
-          acc[cur] = query[cur]
-        }
-        return acc
-      }, {})
-    }
   }
 }
 </script>

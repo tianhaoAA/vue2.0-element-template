@@ -75,7 +75,6 @@
 <script>
 import { validUsername } from '@/utils/validate'
 // import SocialSign from './components/SocialSignin'
-
 export default {
   name: 'Login',
   // components: { SocialSign },
@@ -143,7 +142,7 @@ export default {
     async handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.$store.dispatch('permission/generateRoutes').then(() => {
+          this.$store.dispatch('permission/login').then(() => {
             this.$router.push({ path: '/' })
             this.loading = true
           }).catch((e) => {

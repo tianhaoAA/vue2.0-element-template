@@ -53,9 +53,6 @@ export default {
     handleClickOutside() {
       this.$store.dispatch('app/closeSideBar', { withoutAnimation: false })
     }
-  },
-  created(){
-    console.log('全部的路由信息',this.$router.options.routes );
   }
 }
 </script>

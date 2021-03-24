@@ -37,7 +37,6 @@ export default {
   },
   computed: {
     routes() {
-      console.log('左侧菜单全部路由', this.$store.getters.permission_routes)
       return this.$store.getters.permission_routes
     }
   },
@@ -72,7 +71,6 @@ export default {
       this.show = false
     },
     change(val) {
-      console.log(val, '75行val')
       this.$router.push(val.path)
       this.search = ''
       this.options = []
@@ -82,7 +80,6 @@ export default {
     },
     // 创建新的fuse
     initFuse(list) {
-      console.log(list, 'list')
       this.fuse = new Fuse(list, {
         shouldSort: true,
         threshold: 0.4,
@@ -131,15 +128,12 @@ export default {
           }
         }
       }
-      console.log('筛选出来的数据', res)
+
       return res
     },
     querySearch(query) {
-      console.log('搜索的值', query)
       if (query !== '') {
-        console.log(this.fuse, 'this.fuse')
         this.options = this.fuse.search(query)
-        console.log('搜索出来的数据', this.options)
       } else {
         this.options = []
       }

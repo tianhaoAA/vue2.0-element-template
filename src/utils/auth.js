@@ -7,7 +7,6 @@ export function getToken() {
 }
 
 export function setToken(token) {
-  console.log('登录成功获取到key', token)
   return Cookies.set(TokenKey, token)
 }
 

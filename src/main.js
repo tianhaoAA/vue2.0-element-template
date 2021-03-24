@@ -12,11 +12,10 @@ import './icons' // icon图标
 import '@/styles/index.scss' // global css
 import './permission' // permission control
 import './utils/error-log' // error log
-
+import './routers_permission'
 Vue.config.productionTip = false
 // development  production
 if (process.env.NODE_ENV === 'development') {
-  console.log('进入模拟数据了')
   const { mockXHR } = require('../mock')
   mockXHR()
 }

@@ -51,7 +51,7 @@ export default {
     }
   },
   mounted() {
-    console.log('当前的路由', this.permission_routes)
+
   }
 }
 </script>

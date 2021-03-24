@@ -6,6 +6,7 @@ const getters = {
   cachedViews: state => state.tagsView.cachedViews, // 是否缓存
   isLogin: state => state.permission.isLogin, // 用户是否是登录的状态
   permission_routes: state => state.permission.routes, // 路由
+  addRoutes: state => state.permission.addRoutes, // 路由
   errorLogs: state => state.errorLog.logs // 出错的状态
 }
 export default getters

@@ -29,10 +29,8 @@ module.exports = [
     url: '/vue-element-admin/user/login',
     type: 'post',
     response: config => {
-      console.log('收到登陆请求了',config.body)
       const { username } = config.body
       const token = tokens[username]
-      console.log(token);
       // mock error
       if (!token) {
         return {

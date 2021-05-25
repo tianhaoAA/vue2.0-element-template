@@ -58,6 +58,7 @@ function filterAsyncRouter(asyncRouterMap) {
   })
 
   Store.dispatch('permission/SET_ROUTER_CHANGE', Store.getters.addRoutes)// 合并整个路由表(默认路由+后台返回的路由) 保存在Vuex中
+  console.log(accessedRouters)
   return accessedRouters
 }
 

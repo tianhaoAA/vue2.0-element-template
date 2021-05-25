@@ -40,3 +40,5 @@ npm install --save fuse.js   模糊搜索
 
 npm install --save nprogress  进度条
 npm install mockjs --save-dev  模拟数据
+
+async-validator element 表单推荐的表单颜值库

@@ -6,6 +6,7 @@ import Layout from '@/layout'
 Vue.use(VueRouter)
 /** *
  *  affix:  if set true, the tag will affix in the tags-view 如果为true则显示在tabs上面
+ *   breadcrumb: false            if set false, the item will hidden in breadcrumb(default is true) 如果设置为false，则该项将隐藏在breadcrum中
  *
  * **/
 export const localRoutes = [
@@ -37,19 +38,6 @@ export const localRoutes = [
     path: '/login',
     name: 'Login',
     component: () => import(/* webpackChunkName: "about" */ '../views/login/index.vue')
-  },
-  {
-    path: '/guide',
-    component: Layout,
-    redirect: '/guide/index',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/guide/index'),
-        name: 'Guide',
-        meta: { title: '指南', icon: 'guide', noCache: true }
-      }
-    ]
   },
   {
     path: '/404',

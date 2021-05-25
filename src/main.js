@@ -5,7 +5,7 @@ import router from './router'
 import store from './store'
 import Cookies from 'js-cookie'
 import ElementUI from 'element-ui' // 引入UI组件库
-import enLang from 'element-ui/lib/locale/lang/en'// 如果使用中文语言包请默认支持，无需额外引入，请删除该依赖
+// import enLang from 'element-ui/lib/locale/lang/en'// 如果使用中文语言包请默认支持，无需额外引入，请删除该依赖
 // import 'element-ui/lib/theme-chalk/index.css' // element-ui样式
 import './styles/element-variables.scss'
 import './icons' // icon图标
@@ -20,8 +20,8 @@ if (process.env.NODE_ENV === 'development') {
   mockXHR()
 }
 Vue.use(ElementUI, {
-  size: Cookies.get('size') || 'medium', // set element-ui default size
-  locale: enLang // 如果使用中文，无需设置，请删除
+  size: Cookies.get('size') || 'medium' // set element-ui default size
+  // locale: enLang // 如果使用中文，无需设置，请删除
 })
 new Vue({
   router,

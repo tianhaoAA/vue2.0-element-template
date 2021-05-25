@@ -42,7 +42,6 @@ export default {
   },
   computed: {
     visitedViews() {
-      // console.log('已经打开的路由', this.$store.state.tagsView.visitedViews)
       return this.$store.state.tagsView.visitedViews
     },
     routes() {

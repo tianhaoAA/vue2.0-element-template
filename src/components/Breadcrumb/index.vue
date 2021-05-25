@@ -42,7 +42,7 @@ export default {
       }
 
       this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
-    },
+   },
     isDashboard(route) {
       const name = route && route.name
       if (!name) {

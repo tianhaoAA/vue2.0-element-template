@@ -54,6 +54,14 @@
     </el-table>
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+
+    <el-table>
+      <el-table-column prop="reality_fans" label="输入框" show-overflow-tooltip>
+        <template slot-scope="scope">
+          <el-input v-model="scope.row.reality_fans" placeholder="请输入内容" class="group-inp" @change="funtion" @input="getNum" />
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
